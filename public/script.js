@@ -6,7 +6,11 @@ const myPeer = new Peer(undefined,{
 var myStream;
 
 const myVideo=document.createElement('video')
-myVideo.classList.add("myvideo") 
+myVideo.classList.add("myvideo")
+// myVideo.classList.add("col")
+// myVideo.classList.add("d-flex")
+// myVideo.classList.add("justify-content-center")
+
 myVideo.muted=true
 
 const peers={}
@@ -20,7 +24,11 @@ navigator.mediaDevices.getUserMedia({
   myPeer.on('call',call=>{
     call.answer(stream)
     const video=document.createElement('video')
-    video.classList.add("myvideo") 
+    video.classList.add("myvideo")
+    // video.classList.add("col")
+    // video.classList.add("d-flex")
+    // video.classList.add("justify-content-center")
+    
     call.on('stream',userVideoStream=>{
       addVideoStream(video,userVideoStream)
     })
@@ -45,16 +53,19 @@ myPeer.on('open',id=>{
 })
 
 
-socket.on('user-connected',userId=>{
-  console.log('User connected: ' + userId)
-})
+// socket.on('user-connected',userId=>{
+//   console.log('User connected: ' + userId)
+// })
 
 function connectToNewUser(userId,stream)
 {
   console.log('connecting new user..')
   const call=myPeer.call(userId,stream)
   const video=document.createElement('video')
-  video.classList.add("myvideo") 
+  video.classList.add("myvideo")
+  // video.classList.add("col")
+  // video.classList.add("d-flex")
+  // video.classList.add("justify-content-center")
 
   call.on('stream',userVideoStream=>{
     //console.log('adding peer')
@@ -79,17 +90,17 @@ var video_button = document.getElementById("video_button");
 
 video_button.onclick = function(){
   if(myStream.getVideoTracks()[0].enabled==true)
-  video_button.innerText="Show Video";
+  video_button.innerHTML='<span class="material-icons">videocam_off</span>';
   else
-  video_button.innerText="Hide Video";
+  video_button.innerHTML='<span class="material-icons">videocam</span>';
   myStream.getVideoTracks()[0].enabled = !(myStream.getVideoTracks()[0].enabled);
 }
 
 var audio_button = document.getElementById("audio_button");
 audio_button.onclick = function(){
   if(myStream.getAudioTracks()[0].enabled==true)
-  audio_button.innerText="Mute";
+  audio_button.innerHTML='<span class="material-icons">mic_off</span>';
   else
-  audio_button.innerText="Unmute";
+  audio_button.innerHTML='<span class="material-icons">mic</span>';
   myStream.getAudioTracks()[0].enabled = !(myStream.getAudioTracks()[0].enabled);
 }
