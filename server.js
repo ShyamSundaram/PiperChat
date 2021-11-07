@@ -3,10 +3,11 @@ const { join } = require('path')
 const app = express()
 const fs=require('fs')
 const path=require('path')
+const server = require('http').Server(app)
 
-const server = require('https').createServer({ 
-    key:fs.readFileSync(path.join(__dirname,'cert','key.pem')), //mention your path to key
-    cert:fs.readFileSync(path.join(__dirname,'cert','cert.pem'))},app)//.Server(app) //mention your path to cert
+// const server = require('https').createServer({ 
+//     key:fs.readFileSync(path.join(__dirname,'cert','key.pem')), //mention your path to key
+//     cert:fs.readFileSync(path.join(__dirname,'cert','cert.pem'))},app)//.Server(app) //mention your path to cert
 
 const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid')
@@ -33,4 +34,4 @@ io.on('connection', socket => {
   })
 })
 
-server.listen(3000)
+server.listen(process.env.PORT || 3000)
