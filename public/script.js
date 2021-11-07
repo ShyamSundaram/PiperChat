@@ -1,5 +1,5 @@
 const socket = io('/')
-const videoGrid = document.getElementById('video-grid')
+const videoGrid = document.getElementById('vids')
 const myPeer = new Peer(undefined,{
   host:'peerjs-server.herokuapp.com', secure:true, port:443
 })
@@ -83,7 +83,12 @@ function addVideoStream(video,stream){
   video.addEventListener('loadedmetadata',()=>{
     video.play()
   })
-  videoGrid.append(video)
+  const d=document.createElement("div")
+  d.classList.add("col")
+  d.classList.add("d-flex")
+  d.classList.add("justify-content-center")
+  d.append(video)
+  videoGrid.append(d)
 }
 
 var video_button = document.getElementById("video_button");
