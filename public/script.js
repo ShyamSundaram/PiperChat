@@ -89,6 +89,7 @@ function addVideoStream(video,stream){
   d.classList.add("justify-content-center")
   d.append(video)
   videoGrid.append(d)
+  console.log(peers)
 }
 
 var video_button = document.getElementById("video_button");
