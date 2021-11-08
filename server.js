@@ -29,7 +29,7 @@ io.on('connection', socket => {
     socket.join(roomId)
     socket.broadcast.to(roomId).emit('user-connected',userId)
     socket.on('end', function (){
-      socket.disconnect(0);
+      socket.disconnect(0);  // Shyam this is the place where the emit is caught and diconnect is called manually.
     })
     socket.on('disconnect',()=>{
       socket.broadcast.to(roomId).emit('user-disconnected',userId)
