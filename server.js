@@ -28,11 +28,14 @@ io.on('connection', socket => {
   socket.on('join-room', (roomId, userId) => {
     socket.join(roomId)
     socket.broadcast.to(roomId).emit('user-connected',userId)
-
+    socket.on('end', function (){
+      socket.disconnect(0);
+    })
     socket.on('disconnect',()=>{
       socket.broadcast.to(roomId).emit('user-disconnected',userId)
     })
   })
 })
+
 
 server.listen(process.env.PORT || 3000)

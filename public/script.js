@@ -93,7 +93,7 @@ function addVideoStream(video,stream){
 }
 
 var video_button = document.getElementById("video_button");
-
+let end_call_button = document.getElementById("call_end_button");
 video_button.onclick = function(){
   if(myStream.getVideoTracks()[0].enabled==true)
   video_button.innerHTML='<span class="material-icons">videocam_off</span>';
@@ -101,7 +101,11 @@ video_button.onclick = function(){
   video_button.innerHTML='<span class="material-icons">videocam</span>';
   myStream.getVideoTracks()[0].enabled = !(myStream.getVideoTracks()[0].enabled);
 }
-
+end_call_button.onclick = function(){
+  // socket.disconnect(true);
+  // socket.close();
+  socket.emit('end');
+}
 var audio_button = document.getElementById("audio_button");
 audio_button.onclick = function(){
   if(myStream.getAudioTracks()[0].enabled==true)
